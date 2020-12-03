@@ -1,3 +1,5 @@
+from rsa import *
+
 if __name__ == '__main__':
   # Opção selecionada no menu
   option = menu()
