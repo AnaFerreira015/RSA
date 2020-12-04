@@ -7,12 +7,22 @@ class rsa:
     def totiente(p, q):
         return (p - 1) * (q - 1)
 
-    def writeFile(n, e):
-        file = open("public_key.txt", "w")
-        file.write(str(n))
-        file.write(" ")
-        file.write(str(e))
+    def writeFile(content, name):
+        file = open(f"{name}.txt", "w")
+        file.write(content)
         file.close()
+
+    def readEncrypted():
+        file = open("encrypted_message.txt", "r")
+        file_content = file.read()
+        file.close()
+        return file_content
+    
+    # Pega o conteúdo da mensagem em string e transforma em um array
+    def parseStrToArr(string):
+        # Retira os colchetes e os espaços da string original
+        comma_divided_content = string.replace("]", "").replace("[", "").replace(" ", "")
+        return comma_divided_content.split(",")
 
     def generateKey():
         p = int(input("Numero p: "))
@@ -38,7 +48,7 @@ class rsa:
                     coPrimos = mdc(totiente, e)
                 print(coPrimos)
                 # Escreve a quantidade de co-primos e o número `e` em um arquivo
-                rsa.writeFile(n, e)
+                rsa.writeFile(f"{n} {e}", "public_key")
             else:
                 print("`e` precisa ser maior do que 1")
     
@@ -55,4 +65,24 @@ class rsa:
 
             encrypted.append(encrypted_char)
         
-        print(encrypted)
+        rsa.writeFile(str(encrypted), "encrypted_message")
+
+    # def decrypt():
+    #     p = int(input("Numero p: "))
+    #     q = int(input("Numero q: "))
+    #     e = int(input("numero e: "))
+        
+    #     encrypted_content = rsa.readEncrypted()
+    #     parsed_array = rsa.parseStrToArr(encrypted_content)
+    #     phiN = (p - 1) * (q - 1)
+    #     d = find_congruence(e, 1, phiN)
+
+    #     decrypted_message = ""
+    #     for ascii_code in parsed_array:
+    #         ascii_int = int(ascii_code)
+    #         decrypted_code = (ascii_int ** d) % phiN
+
+    #         decrypted_message += chr(decrypted_code)
+
+    #     print(decrypted_message)
+

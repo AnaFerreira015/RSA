@@ -16,3 +16,4 @@ if __name__ == "__main__":
       print("Opção 3 escolhida")
     else:
       print("Opção inválida!")
+      # rsa.decrypt
