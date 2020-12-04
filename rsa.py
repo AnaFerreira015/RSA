@@ -67,22 +67,29 @@ class rsa:
         
         rsa.writeFile(str(encrypted), "encrypted_message")
 
-    # def decrypt():
-    #     p = int(input("Numero p: "))
-    #     q = int(input("Numero q: "))
-    #     e = int(input("numero e: "))
-        
-    #     encrypted_content = rsa.readEncrypted()
-    #     parsed_array = rsa.parseStrToArr(encrypted_content)
-    #     phiN = (p - 1) * (q - 1)
-    #     d = find_congruence(e, 1, phiN)
+    def decrypt():
+        p = int(input("Numero p: "))
+        q = int(input("Numero q: "))
+        e = int(input("numero e: "))
 
-    #     decrypted_message = ""
-    #     for ascii_code in parsed_array:
-    #         ascii_int = int(ascii_code)
-    #         decrypted_code = (ascii_int ** d) % phiN
+        encrypted_content = rsa.readEncrypted()
+        parsed_array = rsa.parseStrToArr(encrypted_content)
+        print('parsed_array ', parsed_array)
+        phiN = (p - 1) * (q - 1)
+        n = p * q
+        print('n ', n)
+        print('phiN ', phiN)
+        d = find_congruence(e, 1, phiN)
+        print('d ', d)
 
-    #         decrypted_message += chr(decrypted_code)
+        decrypted_message = ""
+        for ascii_code in parsed_array:
+            ascii_int = int(ascii_code)
+            print('ascii_int ', ascii_int)
+            decrypted_code = (ascii_int ** d) % n
+            print('decrypted_code ', decrypted_code)
 
-    #     print(decrypted_message)
+            decrypted_message += chr(decrypted_code)
+
+        print(decrypted_message)
 

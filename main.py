@@ -11,9 +11,11 @@ if __name__ == "__main__":
       rsa.generateKey()
 
     elif option == 2:
+      # print("Opção 2 escolhida")
       rsa.encrypt()
     elif option == 3:
-      print("Opção 3 escolhida")
+      # print("Opção 3 escolhida")
+      rsa.decrypt()
     else:
       print("Opção inválida!")
       # rsa.decrypt
