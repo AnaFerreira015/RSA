@@ -8,15 +8,14 @@ if __name__ == "__main__":
     option = hub.menu()
 
     if option == 1:
-      rsa.generateKey()
+        rsa.generateKey()
 
     elif option == 2:
       # print("Opção 2 escolhida")
-      rsa.encrypt()
+        rsa.encrypt()
     elif option == 3:
       # print("Opção 3 escolhida")
-      rsa.decrypt()
+        rsa.decrypt()
     else:
-      print("Opção inválida!")
+        print("Opção inválida!")
       # rsa.decrypt
-

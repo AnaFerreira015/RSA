@@ -61,7 +61,7 @@ class rsa:
         encrypted = []
         for char in message:
             ascii_code = ord(char)
-            encrypted_char = (ascii_code ** e) % n
+            encrypted_char = pow(ascii_code, e, n)
 
             encrypted.append(encrypted_char)
         
@@ -74,20 +74,14 @@ class rsa:
 
         encrypted_content = rsa.readEncrypted()
         parsed_array = rsa.parseStrToArr(encrypted_content)
-        print('parsed_array ', parsed_array)
         phiN = (p - 1) * (q - 1)
         n = p * q
-        print('n ', n)
-        print('phiN ', phiN)
         d = find_congruence(e, 1, phiN)
-        print('d ', d)
 
         decrypted_message = ""
         for ascii_code in parsed_array:
             ascii_int = int(ascii_code)
-            print('ascii_int ', ascii_int)
-            decrypted_code = (ascii_int ** d) % n
-            print('decrypted_code ', decrypted_code)
+            decrypted_code = pow(ascii_int, d, n)
 
             decrypted_message += chr(decrypted_code)
 
