@@ -1,11 +1,11 @@
-from rsa import rsa
+from rsa import RSA
 import src.hub as hub
 import src.utils as utils
-
 
 if __name__ == "__main__":
     # Opção selecionada no menu
     option = hub.menu()
+    rsa = RSA()
 
     if option == 1:
         rsa.generate_key()
@@ -19,3 +19,4 @@ if __name__ == "__main__":
     else:
         print("Opção inválida!")
       # rsa.decrypt
+

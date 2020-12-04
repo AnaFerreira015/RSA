@@ -1,25 +1,25 @@
 from math import sqrt, floor
 from src.utils import is_prime, mdc, find_congruence
+from src.mdchar import *
 
-
-class rsa:
+class RSA:
     # @staticmethod
-    def totiente(p, q):
+    def totiente(self, p, q):
         return (p - 1) * (q - 1)
 
-    def write_file(content, name):
+    def write_file(self, content, name):
         file = open(f"{name}.txt", "w")
         file.write(content)
         file.close()
 
-    def read_encrypted():
+    def read_encrypted(self):
         file = open("encrypted_message.txt", "r")
         file_content = file.read()
         file.close()
         return file_content
     
     # Pega o conteúdo da mensagem em string e transforma em um array
-    def str_to_array(string):
+    def str_to_array(self, string):
         # Retira os colchetes e os espaços da string original
         comma_divided_content = string.replace("]", "").replace("[", "").replace(" ", "")
         return comma_divided_content.split(",")
@@ -60,7 +60,7 @@ class rsa:
 
         encrypted = []
         for char in message:
-            ascii_code = ord(char)
+            ascii_code = md_ord(char)
             encrypted_char = pow(ascii_code, e, n)
 
             encrypted.append(encrypted_char)
@@ -83,7 +83,7 @@ class rsa:
             ascii_int = int(ascii_code)
             decrypted_code = pow(ascii_int, d, n)
 
-            decrypted_message += chr(decrypted_code)
+            decrypted_message += md_chr(decrypted_code)
 
         print(decrypted_message)
 
