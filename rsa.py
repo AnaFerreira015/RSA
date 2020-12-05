@@ -24,7 +24,7 @@ class rsa:
         comma_divided_content = string.replace("]", "").replace("[", "").replace(" ", "")
         return comma_divided_content.split(",")
 
-    def generate_key():
+    def generate_key(self):
         p = int(input("Numero p: "))
         q = int(input("Numero q: "))
 
@@ -33,7 +33,7 @@ class rsa:
             # que possamos fazer o caminho inverso ao realizado
             # para cifrar a mensagem
             n = p * q
-            totiente = rsa.totiente(p, q)
+            totiente = self.totiente(p, q)
             print(totiente)
             print(n)
 
@@ -48,11 +48,11 @@ class rsa:
                     coPrimos = mdc(totiente, e)
                 print(coPrimos)
                 # Escreve a quantidade de co-primos e o número `e` em um arquivo
-                rsa.write_file(f"{n} {e}", "public_key")
+                self.write_file(f"{n} {e}", "public_key")
             else:
                 print("`e` precisa ser maior do que 1")
     
-    def encrypt():
+    def encrypt(self):
         message = input("Digite a mensagem a ser encriptada: ")
 
         n = int(input("Digite o n: "))
@@ -65,15 +65,15 @@ class rsa:
 
             encrypted.append(encrypted_char)
         
-        rsa.write_file(str(encrypted), "encrypted_message")
+        self.write_file(str(encrypted), "encrypted_message")
 
-    def decrypt():
+    def decrypt(self):
         p = int(input("Numero p: "))
         q = int(input("Numero q: "))
         e = int(input("numero e: "))
 
-        encrypted_content = rsa.read_encrypted()
-        parsed_array = rsa.str_to_array(encrypted_content)
+        encrypted_content = self.read_encrypted()
+        parsed_array = self.str_to_array(encrypted_content)
         phiN = (p - 1) * (q - 1)
         n = p * q
         d = find_congruence(e, 1, phiN)
