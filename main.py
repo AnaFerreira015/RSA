@@ -8,7 +8,7 @@ if __name__ == "__main__":
     option = hub.menu()
 
     if option == 1:
-        rsa.generateKey()
+        rsa.generate_key()
 
     elif option == 2:
       # print("Opção 2 escolhida")
