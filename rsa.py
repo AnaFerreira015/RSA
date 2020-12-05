@@ -7,24 +7,24 @@ class rsa:
     def totiente(p, q):
         return (p - 1) * (q - 1)
 
-    def writeFile(content, name):
+    def write_file(content, name):
         file = open(f"{name}.txt", "w")
         file.write(content)
         file.close()
 
-    def readEncrypted():
+    def read_encrypted():
         file = open("encrypted_message.txt", "r")
         file_content = file.read()
         file.close()
         return file_content
     
     # Pega o conteúdo da mensagem em string e transforma em um array
-    def parseStrToArr(string):
+    def str_to_array(string):
         # Retira os colchetes e os espaços da string original
         comma_divided_content = string.replace("]", "").replace("[", "").replace(" ", "")
         return comma_divided_content.split(",")
 
-    def generateKey():
+    def generate_key():
         p = int(input("Numero p: "))
         q = int(input("Numero q: "))
 
@@ -48,7 +48,7 @@ class rsa:
                     coPrimos = mdc(totiente, e)
                 print(coPrimos)
                 # Escreve a quantidade de co-primos e o número `e` em um arquivo
-                rsa.writeFile(f"{n} {e}", "public_key")
+                rsa.write_file(f"{n} {e}", "public_key")
             else:
                 print("`e` precisa ser maior do que 1")
     
@@ -65,15 +65,15 @@ class rsa:
 
             encrypted.append(encrypted_char)
         
-        rsa.writeFile(str(encrypted), "encrypted_message")
+        rsa.write_file(str(encrypted), "encrypted_message")
 
     def decrypt():
         p = int(input("Numero p: "))
         q = int(input("Numero q: "))
         e = int(input("numero e: "))
 
-        encrypted_content = rsa.readEncrypted()
-        parsed_array = rsa.parseStrToArr(encrypted_content)
+        encrypted_content = rsa.read_encrypted()
+        parsed_array = rsa.str_to_array(encrypted_content)
         phiN = (p - 1) * (q - 1)
         n = p * q
         d = find_congruence(e, 1, phiN)
