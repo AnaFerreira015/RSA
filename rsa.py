@@ -1,5 +1,6 @@
 from math import sqrt, floor
-from src.utils import is_prime, mdc, find_congruence
+from src.hub import Validator
+from src.utils import find_congruence
 from src.mdchar import *
 
 class RSA:
@@ -25,38 +26,27 @@ class RSA:
         return comma_divided_content.split(",")
 
     def generate_key(self):
-        p = int(input("Numero p: "))
-        q = int(input("Numero q: "))
+        validator = Validator()
 
-        if is_prime(p) and is_prime(q):
-            # Tamanho do conjunto finito de valores para
-            # que possamos fazer o caminho inverso ao realizado
-            # para cifrar a mensagem
-            n = p * q
-            totiente = self.totiente(p, q)
-            print(totiente)
-            print(n)
+        p = validator.get_prime_input('P')
+        q = validator.get_prime_input('Q')
 
-            e = int(input("numero e: "))
+        # Tamanho do conjunto finito de valores para
+        # que possamos fazer o caminho inverso ao realizado
+        # para cifrar a mensagem
 
-            if e > 1:
-                # quantidade de co-primos de um numero que
-                # são menores que ele mesmo
-                coPrimos = mdc(totiente, e)
-                while (coPrimos != 1) or (e <= 1):
-                    e = int(input("numero e: "))
-                    coPrimos = mdc(totiente, e)
-                print(coPrimos)
-                # Escreve a quantidade de co-primos e o número `e` em um arquivo
-                self.write_file(f"{n} {e}", "public_key")
-            else:
-                print("`e` precisa ser maior do que 1")
+        n = p * q
+        totiente = self.totiente(p, q)
+
+        e = validator.get_e_input(totiente)
+
+        self.write_file(f"{n} {e}", "public_key")
     
     def encrypt(self):
-        message = input("Digite a mensagem a ser encriptada: ")
+        message = input("[+] Digite a mensagem a ser encriptada: ")
 
-        n = int(input("Digite o n: "))
-        e = int(input("Digite o e: "))
+        n = int(input("[+] Valor de N: "))
+        e = int(input("[+] Valor de E: "))
 
         encrypted = []
         for char in message:
@@ -68,9 +58,9 @@ class RSA:
         self.write_file(str(encrypted), "encrypted_message")
 
     def decrypt(self):
-        p = int(input("Numero p: "))
-        q = int(input("Numero q: "))
-        e = int(input("numero e: "))
+        p = int(input("[+] Valor de P: "))
+        q = int(input("[+] Valor de Q: "))
+        e = int(input("[+] Valor de E: "))
 
         encrypted_content = self.read_encrypted()
         parsed_array = self.str_to_array(encrypted_content)
@@ -82,6 +72,9 @@ class RSA:
         for ascii_code in parsed_array:
             ascii_int = int(ascii_code)
             decrypted_code = pow(ascii_int, d, n)
+
+            # if decrypted_code <= 1:
+            #     decrypted_code += n
 
             decrypted_message += md_chr(decrypted_code)
 

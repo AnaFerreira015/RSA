@@ -8,15 +8,14 @@ if __name__ == "__main__":
     rsa = RSA()
 
     if option == 1:
+        print('\n[1] Gerar chave pública')
         rsa.generate_key()
-
     elif option == 2:
-      # print("Opção 2 escolhida")
+        print('\n[2] Encriptar')
         rsa.encrypt()
     elif option == 3:
-      # print("Opção 3 escolhida")
+        print('\n[3] Desencriptar')
         rsa.decrypt()
     else:
-        print("Opção inválida!")
-      # rsa.decrypt
+        exit(1)
 
