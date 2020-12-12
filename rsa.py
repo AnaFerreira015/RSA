@@ -53,7 +53,7 @@ class RSA:
         self.write_file(f"{n} {e}", "public_key")
     
     def encrypt(self):
-        message = input("[+] Digite a mensagem a ser encriptada: ")
+        message = input("[+] Digite a mensagem a ser criptografada: ")
 
         n = int(input("[+] Valor de N: "))
         e = int(input("[+] Valor de E: "))
