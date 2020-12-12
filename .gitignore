@@ -4,3 +4,4 @@
 /src/__pycache__
 public_key.txt
 encrypted_message.txt
+/.vscode
