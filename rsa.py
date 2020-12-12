@@ -47,7 +47,6 @@ class RSA:
 
         e = validator.get_e_input(totiente)
 
-        print(mdc(n, e))
         while(mdc(n, e) != 1):
             print('[!] `N` e `E` precisam ser coprimos!')
             e = validator.get_e_input(totiente)
