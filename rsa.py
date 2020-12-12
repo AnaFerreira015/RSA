@@ -2,6 +2,7 @@ from math import sqrt, floor
 from src.hub import Validator
 from src.utils import find_congruence
 from src.mdchar import *
+from src.utils import mdc
 
 class RSA:
     # @staticmethod
@@ -36,10 +37,19 @@ class RSA:
         # para cifrar a mensagem
 
         n = p * q
+
+        while (n < 26):
+            print('P * Q precisa ser maior que 26')
+            p = validator.get_prime_input('P')
+            q = validator.get_prime_input('Q')
+            n = p * q
         totiente = self.totiente(p, q)
 
         e = validator.get_e_input(totiente)
 
+        while(mdc(n, e) != 1):
+            print('[!] `N` e `E` precisam ser coprimos!')
+            e = validator.get_e_input(totiente)
         self.write_file(f"{n} {e}", "public_key")
     
     def encrypt(self):
