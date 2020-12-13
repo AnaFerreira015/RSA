@@ -64,6 +64,6 @@ class Validator:
             if co_primo and e > 1 and e < totiente:
                 break
             print(
-                "\n[!] O valor de `E` precisa ser maior que 1 e menor que o totiente e também coprimo de (p-1) * (q-1)"
+                "\n[!] O valor de `E` precisa ser maior que 1, menor que o totiente e também coprimo de (p-1) * (q-1)"
             )
         return e
