@@ -10,8 +10,8 @@ def menu():
     print("")
     print("Escolha uma opção:\n")
     print("[1] Gerar chave pública")
-    print("[2] Encriptar")
-    print("[3] Desencriptar")
+    print("[2] Criptografar")
+    print("[3] Descriptografar")
     print("[0] Sair")
     print("")
 

@@ -84,8 +84,7 @@ class RSA:
         self.write_file(f"{n} {e}", "public_key")
 
     def encrypt(self):
-        """Função para criptografar uma determinada mensagem"""
-        message = input("[+] Digite a mensagem a ser encriptada: ")
+        message = input("[+] Digite a mensagem a ser criptografada: ")
 
         n = int(input("[+] Valor de N: "))
         e = int(input("[+] Valor de E: "))
@@ -115,9 +114,6 @@ class RSA:
         for ascii_code in parsed_array:
             ascii_int = int(ascii_code)
             decrypted_code = pow(ascii_int, d, n)
-
-            # if decrypted_code <= 1:
-            #     decrypted_code += n
 
             decrypted_message += md_chr(decrypted_code)
 
