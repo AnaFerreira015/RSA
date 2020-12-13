@@ -2,62 +2,23 @@ from math import sqrt, floor
 from random import randint
 
 
-def fermat(n: int) -> bool:
+def is_prime(n: int) -> bool:
     """Função para checar se um dado número é primo
     Args:
         n (int): O número a ser testado
     Returns:
         [bool]: Se é primo ou não
     """
-    if (n == 1):
+    if (n < 2):
         return False
 
     roof = floor(sqrt(n))
-    return len([1 for i in range(1, roof + 1) if n % i == 0]) == 1
 
-
-def miller_rabin(n, k=5) -> bool:
-    """Função de Miller–Rabin para checar se um dado número é primo
-
-    Args:
-        n (int): O número a ser testado
-
-    Returns:
-        [bool]: Se é primo ou não
-    """
-
-    # Se n for menor do que 2 retorna falso, já que nenhum número <2 é primo
-    if n < 2:
-        return False
-    """ Para todos os números primos contidos no array, checa se n mod p é 0.
-    Caso seja, então p divide n e então retornamos se n é igual a p
-    """
-    for p in [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]:
-        if n % p == 0:
-            return n == p
-    s, d = 0, n - 1
-    while d % 2 == 0:
-        s, d = s + 1, d / 2
-    for i in range(k):
-        x = pow(randint(2, n - 1), d, n)
-        if x == 1 or x == n - 1:
-            continue
-        for r in range(1, s):
-            x = (x * x) % n
-            if x == 1:
-                return False
-            if x == n - 1:
-                break
-        else:
+    for i in range(2, roof + 1):
+        if n % i == 0:
             return False
+
     return True
-
-
-def is_prime(n: int) -> bool:
-    if len(str(n)) > 13:
-        return miller_rabin(n)
-    else:
-        return fermat(n)
 
 
 def mdc(a: int, d: int) -> int:
