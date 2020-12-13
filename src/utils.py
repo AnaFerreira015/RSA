@@ -9,7 +9,7 @@ def fermat(n: int) -> bool:
     Returns:
         [bool]: Se é primo ou não
     """
-    if n == 1:
+    if (n == 1):
         return False
 
     roof = floor(sqrt(n))
