@@ -28,6 +28,7 @@ def menu():
 
 class Validator:
     """Validator é uma classe específica para encapsular validações de input"""
+
     def get_prime_input(self, varname):
         """Função para requerir um input de um número primo
 
@@ -47,10 +48,10 @@ class Validator:
         return res
 
     def get_e_input(self, totiente: int):
-        """Função para requerir o valor de E 
+        """Função para requerir o valor de E
 
         Args:
-            totiente (int): O valor da função totiente 
+            totiente (int): O valor da função totiente
 
         Returns:
             [int]: O valor de e, que é coprimo do totiente
