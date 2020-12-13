@@ -9,6 +9,9 @@ def is_prime(n: int) -> bool:
     Returns:
         [bool]: Se é primo ou não
     """
+    if (n == 1):
+        return False
+
     roof = floor(sqrt(n))
     return len([1 for i in range(1, roof + 1) if n % i == 0]) == 1
 
