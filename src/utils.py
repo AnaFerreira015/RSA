@@ -213,6 +213,21 @@ mathUtils = MathUtils()
 class Validator:
     """Validator é uma classe específica para encapsular validações de input"""
 
+    def get_p_and_q_input(self):
+        """Função para requerir um input do e P e do Q
+        Returns:
+            [list(int)]: Retorna uma lista com p e q entrados pelo usuário, respectivamente
+        """
+
+        p = self.get_prime_input("P")
+        q = self.get_prime_input("Q")
+        while p == q:
+            print(f"\n[!] O valor de `P` e `Q` precisam ser diferentes")
+            p = self.get_prime_input("P")
+            q = self.get_prime_input("Q")
+
+        return [p, q]
+
     def get_prime_input(self, varname):
         """Função para requerir um input de um número primo
 

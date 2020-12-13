@@ -27,7 +27,7 @@ class RSA:
         e = validator.get_e_input(totiente)
 
 
-        self.write_file(f"{n} {e}", "public_key")
+        fileUtils.write_file(f"{n} {e}", "public_key")
 
     def encrypt(self):
         message = input("[+] Digite a mensagem a ser criptografada: ")
