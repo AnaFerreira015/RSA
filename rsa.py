@@ -59,8 +59,7 @@ class RSA:
         """Gera a chave pública pegando todos os inputs do usuário"""
         validator = Validator()
 
-        p = validator.get_prime_input("P")
-        q = validator.get_prime_input("Q")
+        [p, q] = validator.get_p_and_q_input()
 
         # Tamanho do conjunto finito de valores para
         # que possamos fazer o caminho inverso ao realizado
@@ -77,9 +76,6 @@ class RSA:
 
         e = validator.get_e_input(totiente)
 
-        while mdc(n, e) != 1:
-            print("[!] `N` e `E` precisam ser coprimos!")
-            e = validator.get_e_input(totiente)
         self.write_file(f"{n} {e}", "public_key")
 
     def encrypt(self):
