@@ -1,5 +1,4 @@
 from math import sqrt, floor
-from random import randint
 
 
 def is_prime(n: int) -> bool:

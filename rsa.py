@@ -1,4 +1,3 @@
-from math import sqrt, floor
 from src.hub import Validator
 from src.utils import find_congruence
 from src.mdchar import *

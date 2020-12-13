@@ -1,6 +1,5 @@
 from rsa import RSA
 import src.hub as hub
-import src.utils as utils
 
 """
 Universidade Federal de Alagoas - UFAL
