@@ -90,8 +90,8 @@ class RSA:
 
         encrypted = []
         for char in message:
-            ascii_code = md_ord(char)
-            encrypted_char = pow(ascii_code, e, n)
+            char_code = md_ord(char)
+            encrypted_char = pow(char_code, e, n)
 
             encrypted.append(encrypted_char)
 
@@ -110,9 +110,9 @@ class RSA:
         d = find_congruence(e, 1, phiN)
 
         decrypted_message = ""
-        for ascii_code in parsed_array:
-            ascii_int = int(ascii_code)
-            decrypted_code = pow(ascii_int, d, n)
+        for char_code in parsed_array:
+            char_int = int(char_code)
+            decrypted_code = pow(char_int, d, n)
 
             decrypted_message += md_chr(decrypted_code)
 
