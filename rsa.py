@@ -70,7 +70,7 @@ class RSA:
         n = p * q
 
         while n <= 26:
-            print("P * Q precisa ser maior que 26")
+            print("[!] P * Q precisa ser maior que 26")
             p = validator.get_prime_input("P")
             q = validator.get_prime_input("Q")
             n = p * q
