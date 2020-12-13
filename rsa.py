@@ -35,10 +35,14 @@ class RSA:
         Returns:
             string: O conteúdo do arquivo lido
         """
-        file = open("encrypted_message.txt", "r")
-        file_content = file.read()
-        file.close()
-        return file_content
+
+        try:
+            file = open("encrypted_message.txt", "r")
+            file_content = file.read()
+            file.close()
+            return file_content
+        except:
+            raise RuntimeError("O arquivo encrypted_message.txt não existe.")
 
     def str_to_array(self, string):
         """Pega o conteúdo da mensagem em string e transforma em um array
@@ -49,6 +53,10 @@ class RSA:
         Returns:
             [list(string)]: Um array do conteúdo da mensagem
         """
+
+        if ',' not in string and ' ' in string:
+            raise RuntimeError("Os números devem ser separados por vírgula e espaço.")
+
         # Retira os colchetes e os espaços da string original
         comma_divided_content = (
             string.replace("]", "").replace("[", "").replace(" ", "")
