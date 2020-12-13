@@ -83,9 +83,6 @@ class RSA:
             ascii_int = int(ascii_code)
             decrypted_code = pow(ascii_int, d, n)
 
-            # if decrypted_code <= 1:
-            #     decrypted_code += n
-
             decrypted_message += md_chr(decrypted_code)
 
         print(decrypted_message)
